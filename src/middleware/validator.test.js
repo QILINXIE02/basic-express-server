@@ -4,21 +4,21 @@ const validatorMiddleware = require('./validator');
 
 describe('validatorMiddleware', () => {
   it('should throw error for missing ID parameter', () => {
-    const req = { params: {} };
+    const req = { params: {} }; // Empty params object
     const res = {};
     const next = jest.fn();
 
-    expect(() => validatorMiddleware(req, res, next)).toThrowError('Missing ID parameter');
-    expect(next).not.toHaveBeenCalled();
+    expect(() => validatorMiddleware(req, res, next)).toThrowError('Missing ID parameter'); // Expect specific error message
+    expect(next).not.toHaveBeenCalled(); // Don't expect next() to be called
   });
 
   it('should call next() for valid request with ID', () => {
-    const req = { params: { id: 'abc123' } };
+    const req = { params: { id: 'abc123' } }; // Valid request with id
     const res = {};
     const next = jest.fn();
 
     validatorMiddleware(req, res, next);
 
-    expect(next).toHaveBeenCalled();
+    expect(next).toHaveBeenCalled(); // Expect next() to be called
   });
 });

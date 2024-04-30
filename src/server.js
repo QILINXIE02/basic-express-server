@@ -4,10 +4,11 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
-const handleNotFound = require('./handlers/404.js');
-const handleError = require('./handlers/500.js');
+const handleNotFound = require('./error-handlers/404.js');
+const handleError = require('./error-handlers/500.js');
 const logger = require('./middleware/logger.js');
 const validatorMiddleware = require('./middleware/validator');
+const timeStamp = require('./middleware/timestamp.js');
 
 const app = express();
 
@@ -58,7 +59,7 @@ function simulateError(req, res, next) {
 function start(port) {
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
-  })
+  });
 }
 
 module.exports = {app, start};
