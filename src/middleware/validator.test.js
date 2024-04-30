@@ -8,8 +8,8 @@ describe('validatorMiddleware', () => {
     const res = {};
     const next = jest.fn();
 
-    expect(() => validatorMiddleware(req, res, next)).toThrowError('Missing ID parameter'); // Expect specific error message
-    expect(next).not.toHaveBeenCalled(); // Don't expect next() to be called
+    expect(() => validatorMiddleware(req, res, next)).toThrowError('Missing ID parameter');
+    expect(next).not.toHaveBeenCalled();
   });
 
   it('should call next() for valid request with ID', () => {
@@ -19,6 +19,6 @@ describe('validatorMiddleware', () => {
 
     validatorMiddleware(req, res, next);
 
-    expect(next).toHaveBeenCalled(); // Expect next() to be called
+    expect(next).toHaveBeenCalled();
   });
 });
