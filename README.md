@@ -9,8 +9,7 @@
 # Lab: Express Dynamic API (Phase 1)
 ## Project: Build a basic Express server with modularity, middleware, and tests.
 
-## tests:
-![alt text](image-1.png)
+
 ## Testing Requirements
 Assert the following:
 - 404 on a bad route.
@@ -18,6 +17,9 @@ Assert the following:
 - 500 if no name in the query string.
 - 200 if the name is in the query string.
 - Given a name in the query string, the output object is correct.
+
+## tests:
+![alt text](image-1.png)
 
 ## Installation and Testing
 
