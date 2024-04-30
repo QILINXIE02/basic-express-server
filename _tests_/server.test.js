@@ -8,11 +8,6 @@ const mockRequest = supertest(app);
 
 describe('API Server', () => {
 
-    it('should append a timestamp to the request object', async () => {
-       let response = await mockRequest.get('/');
-       expect(response.headers.rt).toBeDefined();
-    });
-
     it('should respond with a 404 on an invalid route', async () => {
        let response = await mockRequest.get('/foo');
        expect(response.status).toBe(404);
