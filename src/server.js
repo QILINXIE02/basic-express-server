@@ -39,14 +39,13 @@ function getData(req, res) {
     res.status(200).json(database);
 }
 
-function getOneRecord( req, res, next ) {
-    // http://localhost:3000/data/abc111 => req.params.id = "abc111"
-    let id = req.params.id;
-    if(database[id]) {
-        res.status(200).json(database[id]);
-    } else {
-        next("Record Not Found")
-    }
+function getOneRecord(req, res, next) {
+  let id = req.params.id;
+  if (database[id]) {
+      res.status(200).json(database[id]);
+  } else {
+      next("Record Not Found");
+  }
 }
 
 function getHomePage(req, res) {

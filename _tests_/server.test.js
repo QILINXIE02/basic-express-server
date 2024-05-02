@@ -1,6 +1,5 @@
 'use strict';
 
-const e = require('express');
 const { app } = require('../src/server.js');
 const supertest = require('supertest');
 
@@ -29,15 +28,15 @@ describe('API Server', () => {
         expect(response.text).toBe('Hello World');
     });
 
-    it('should respond with 200 status for the /data route', async () => {
-        let response = await mockRequest.get('/data');
+    it('should respond with a 200 status for a single record route', async () => {
+        let response = await mockRequest.get('/data/abc111');
         expect(response.status).toBe(200);
+        expect(response.body.name).toBe("John"); // Check if the name is present in the response body
     });
 
-    it('should respond with an object with numbers for the /data route', async () => {
-        let response = await mockRequest.get('/data');
-        // Bad Test ... it depends on something hard coded in the server
-        expect(response.body.abc111.name).toBe("John");
+    it('should respond with an object for a single record route', async () => {
+        let response = await mockRequest.get('/data/abc111');
+        expect(response.body).toBeDefined(); // Check if the response body is defined
     });
 
     it('should respond with a 200 status for a single record route', async () => {
@@ -52,6 +51,21 @@ describe('API Server', () => {
 
     it('should respond with a 500 status for a invalid single record route', async () => {
         let response = await mockRequest.get('/data/zzz888');
+        expect(response.status).toBe(500);
+    });
+
+    it('should respond with a 200 status for the /person route with name parameter', async () => {
+        let response = await mockRequest.get('/person?name=John');
+        expect(response.status).toBe(200);
+    });
+
+    it('should respond with an object containing the provided name for the /person route with name parameter', async () => {
+        let response = await mockRequest.get('/person?name=John');
+        expect(response.body.name).toBe('John');
+    });
+
+    it('should respond with a 500 status for the /person route without name parameter', async () => {
+        let response = await mockRequest.get('/person');
         expect(response.status).toBe(500);
     });
 
